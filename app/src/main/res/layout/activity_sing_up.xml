@@ -7,7 +7,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="prorassameepbru.sukanya.bookmeetingpbru.SingUpActivity">
+    tools:context="prorassameepbru.sukanya.bookmeetingpbru.SingUpActivity"
+    android:background="@drawable/bg4">
 
     <TextView
         android:layout_width="wrap_content"
@@ -15,14 +16,16 @@
         android:text="@string/singup"
         android:id="@+id/textView"
         android:layout_centerHorizontal="true"
-        android:textSize="@dimen/h1" />
+        android:textSize="@dimen/h1"
+        android:textColor="@color/text" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/singup"
         android:id="@+id/button3"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentBottom="true"
+        android:textColor="@color/text" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -30,7 +33,8 @@
         android:id="@+id/scrollView"
         android:layout_below="@+id/textView"
         android:layout_above="@+id/button3"
-        android:layout_margin="10dp" >
+        android:layout_margin="10dp"
+        android:background="#bdfefcfc">
 
         <LinearLayout
             android:orientation="vertical"
@@ -49,13 +53,15 @@
                     android:text="@string/name"
                     android:id="@+id/textView2"
                     android:textSize="@dimen/h2"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:textColor="@color/text" />
 
                 <EditText
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/editText"
-                    android:layout_weight="2" />
+                    android:layout_weight="2"
+                    android:textColor="@color/text" />
             </LinearLayout>
 
             <LinearLayout
@@ -69,13 +75,15 @@
                     android:text="@string/surname"
                     android:id="@+id/textView3"
                     android:textSize="@dimen/h2"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:textColor="@color/text" />
 
                 <EditText
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/editText2"
-                    android:layout_weight="2" />
+                    android:layout_weight="2"
+                    android:textColor="@color/text" />
             </LinearLayout>
 
             <LinearLayout
@@ -89,13 +97,15 @@
                     android:text="@string/idcard"
                     android:id="@+id/textView4"
                     android:textSize="@dimen/h2"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:textColor="@color/text" />
 
                 <EditText
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/editText3"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:textColor="@color/text" />
             </LinearLayout>
 
             <RadioGroup
@@ -107,13 +117,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/office"
-                    android:id="@+id/radioButton" />
+                    android:id="@+id/radioButton"
+                    android:textColor="@color/text" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/outoffice"
-                    android:id="@+id/radioButton2" />
+                    android:id="@+id/radioButton2"
+                    android:textColor="@color/text" />
             </RadioGroup>
 
             <LinearLayout
@@ -127,13 +139,15 @@
                     android:text="User :"
                     android:id="@+id/textView5"
                     android:textSize="@dimen/h2"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:textColor="@color/text" />
 
                 <EditText
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/editText4"
-                    android:layout_weight="2" />
+                    android:layout_weight="2"
+                    android:textColor="@color/text" />
             </LinearLayout>
 
             <LinearLayout
@@ -147,13 +161,15 @@
                     android:text="Password :"
                     android:id="@+id/textView6"
                     android:textSize="@dimen/h2"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:textColor="@color/text" />
 
                 <EditText
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/editText5"
-                    android:layout_weight="2" />
+                    android:layout_weight="2"
+                    android:textColor="@color/text" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
