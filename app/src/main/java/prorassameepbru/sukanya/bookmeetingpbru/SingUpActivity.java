@@ -7,6 +7,16 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.squareup.okhttp.Call;
+import com.squareup.okhttp.Callback;
+import com.squareup.okhttp.FormEncodingBuilder;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.RequestBody;
+import com.squareup.okhttp.Response;
+
+import java.io.IOException;
+
 public class SingUpActivity extends AppCompatActivity {
 
     private EditText nameEditText,surnameEditText,idCardEditText,
@@ -33,6 +43,18 @@ public class SingUpActivity extends AppCompatActivity {
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                switch (checkedId) {
+                    case R.id.radioButton:
+                        officeString="0";
+                        break;
+                    case R.id.radioButton2:
+                        officeString="1";
+                        break;
+                    default:
+                        officeString="0";
+                        break;
+                }
 
             }
         });
@@ -72,13 +94,43 @@ public class SingUpActivity extends AppCompatActivity {
                     "โปรดเลือกสถานะด้วยค่ะ");
         } else{
 
-           //  uploadValuetoServer();
+           uploadValuetoServer();
         }
 
 
 
 
     } //ClickSign
+
+    private void uploadValuetoServer() {
+
+        OkHttpClient okHttpClient=new OkHttpClient();
+        RequestBody requestBody=new FormEncodingBuilder()
+                .add("isAdd","true")
+                .add("Name",nameString)
+                .add("Surname",surnameString)
+                .add("IDcard",idCardString)
+                .add("Office",officeString)
+                .add("User",userString)
+                .add("Password",passwordString)
+                .build();
+        Request.Builder builder=new Request.Builder();
+        Request request=builder.url("http://swiftcodingthai.com/pbru/add_user_master.php")
+                .post(requestBody).build();
+        Call call=okHttpClient.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Request request, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Response response) throws IOException {
+
+                finish();
+            }
+        });
+    }//uploadValue
 
     private boolean checkRadioChoose() {
         boolean result=true;
