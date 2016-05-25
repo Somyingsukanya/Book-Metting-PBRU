@@ -1,6 +1,7 @@
 package prorassameepbru.sukanya.bookmeetingpbru;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.media.Image;
 import android.os.AsyncTask;
@@ -24,9 +25,11 @@ public class MainActivity extends AppCompatActivity {
     //Explicit
     private  MyManage myManage;
     private  String strURL="http://swiftcodingthai.com/pbru/get_user.php";
-    private String strLogo ="http://swiftcodingthai.com/pbru/Image/logo_pbru.png";
+    private String strLogo ="http://swiftcodingthai.com/pbru/Image/logo_pbru1.png";
     private ImageView imageView;
     private EditText userEditText,passwordEditText;
+    private String userString,passwordString;
+    private String[] userLoginString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +56,68 @@ public class MainActivity extends AppCompatActivity {
         synJSON();
 
     } // Main Method
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        databaseList();
+        synJSON();
+    }
+
+    public void clickSignIn(View view) {
+
+        userString=userEditText.getText().toString().trim();
+        passwordString=passwordEditText.getText().toString().trim();
+
+        //check Space
+        if (userString.equals("") || passwordString.equals("")) {
+            //Have Space
+            MyAlert myAlert=new MyAlert();
+            myAlert.myDialog(this,"มีช่องว่าง","กรุณากรอกทุกช่องว่าง");
+
+        } else {
+            //No Space
+            searchUser(userString);
+        }
+
+    } //clickSignIn
+
+    private void searchUser(String userString) {
+
+        try {
+
+            SQLiteDatabase sqLiteDatabase=openOrCreateDatabase(MyOpenHelper.database_name,
+                    MODE_PRIVATE,null);
+            Cursor cursor=sqLiteDatabase.rawQuery("SELECT * FROM userTABLE WHERE User = " + "'" + userString + "'",null);
+            cursor.moveToFirst();
+            userLoginString =new String[cursor.getColumnCount()];
+            for (int i=0;i<cursor.getColumnCount();i++) {
+                userLoginString[i]=cursor.getString(i);
+            }//for
+            cursor.close();
+
+            //Check Password
+            if (passwordString.equals(userLoginString[6])) {
+                //Password True
+                Intent intent=new Intent(MainActivity.this,ServiceActivity.class);
+                intent.putExtra("User",userLoginString);
+                startActivity(intent);
+                finish();
+
+            } else {
+                //Password False
+                MyAlert myAlert=new MyAlert();
+                myAlert.myDialog(this,"Password False","Please Try Again Password False");
+
+            }
+
+
+        } catch (Exception e) {
+            MyAlert myAlert=new MyAlert();
+            myAlert.myDialog(this,"ไม่มี User นี้","ไม่มี" + userString + "ในฐานข้อมูลของเรา");
+        }
+
+    } //searchUser
 
     private void synJSON() {
 
